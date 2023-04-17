@@ -87,3 +87,11 @@ function setOperator(operator) {
   outputHistory.textContent = `${firstNum}${operation}`;
   outputDisplay.textContent = '';
 }
+
+function evaluate() {
+  if (operation === null) return;
+  secondNum = outputDisplay.textContent;
+  outputDisplay.textContent = operate(firstNum, secondNum, operation);
+  outputHistory.textContent = `${firstNum}${operation}${secondNum} =`
+  operation = null;
+}
