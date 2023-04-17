@@ -15,6 +15,10 @@ numberBtns.forEach((button) => {
   });
 });
 
+decimalBtn.addEventListener('click', (e) => {
+  appendNum(e.target.id);
+});
+
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
     throw new Error('Can\'t add these two values together, check your input.');
@@ -58,8 +62,13 @@ const operate = function(num1, num2, operator) {
 };
 
 function appendNum(num) {
-  if (outputDisplay.textContent === '0') {
+  if (num === '.') { // check to enter a decimal point
+    if (outputDisplay.textContent === '') {
+      outputDisplay.textContent = 0;
+    } else if (outputDisplay.textContent.includes('.')) return;
+  } else if (outputDisplay.textContent === '0') {
     outputDisplay.textContent = '';
   }
+
   outputDisplay.textContent += num;
 }
