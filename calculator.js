@@ -119,7 +119,7 @@ function resetOutput() {
 
 function getKeyboardInput(e) {
   console.log(e.key);
-  if (!isNaN(e.key)) appendNum(e.key);
+  if (!isNaN(e.key) || e.key === '.') appendNum(e.key);
   if (e.key.match(/[\+\-*/x]/)) setOperator(e.key);
   if (e.key === '=' || e.key === 'Enter') evaluate();
   if (e.key === 'Backspace' || e.key === 'Delete') delOne();
