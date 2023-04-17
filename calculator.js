@@ -26,6 +26,8 @@ decimalBtn.addEventListener('click', (e) => {
   appendNum(e.target.id);
 });
 
+equalsBtn.addEventListener('click', evaluate);
+
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
     throw new Error('Can\'t add these two values together, check your input.');
@@ -92,6 +94,6 @@ function evaluate() {
   if (operation === null) return;
   secondNum = outputDisplay.textContent;
   outputDisplay.textContent = operate(firstNum, secondNum, operation);
-  outputHistory.textContent = `${firstNum}${operation}${secondNum} =`
+  outputHistory.textContent = `${firstNum}${operation}${secondNum}=`
   operation = null;
 }
