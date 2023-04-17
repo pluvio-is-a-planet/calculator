@@ -7,6 +7,7 @@ const operatorBtns = document.querySelectorAll('.btn.operator');
 const decimalBtn = document.querySelector('.btn.decimal-separator');
 const equalsBtn = document.querySelector('.btn.equals');
 const clearBtn = document.querySelector('.btn.clear');
+const deleteBtn = document.querySelector('.btn.delete');
 const outputDisplay = document.querySelector('.display.output');
 const outputHistory = document.querySelector('.display.history');
 
@@ -27,8 +28,8 @@ decimalBtn.addEventListener('click', (e) => {
 });
 
 equalsBtn.addEventListener('click', evaluate);
-
 clearBtn.addEventListener('click', clearAll);
+deleteBtn.addEventListener('click', resetOutput);
 
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
@@ -106,4 +107,8 @@ function clearAll() {
   operation = null;
   outputDisplay.textContent = '';
   outputHistory.textContent = '';
+}
+
+function resetOutput() {
+  outputDisplay.textContent = '';
 }
