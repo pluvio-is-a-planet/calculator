@@ -27,13 +27,6 @@ body {
   gap: 0.3rem;
 }
 
-input#display {
-  flex: 2 1 auto;
-  font-weight: 700;
-  font-size: 2rem;
-  font-family: 'VT323', monospace;
-}
-
 .display.row .btn {
   flex: 1 1 auto;
 }
