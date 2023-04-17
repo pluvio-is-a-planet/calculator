@@ -1,5 +1,6 @@
 let firstNum = '';
 let secondNum = '';
+let operation = null;
 
 const numberBtns = document.querySelectorAll('.btn.number');
 const operatorBtns = document.querySelectorAll('.btn.operator');
@@ -12,6 +13,12 @@ const outputHistory = document.querySelector('.display.history');
 numberBtns.forEach((button) => {
   button.addEventListener('click', (e) => {
     appendNum(e.target.id);
+  });
+});
+
+operatorBtns.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    setOperator(e.target.id);
   });
 });
 
@@ -71,4 +78,12 @@ function appendNum(num) {
   }
 
   outputDisplay.textContent += num;
+}
+
+function setOperator(operator) {
+  if (operation !== null) evaluate();
+  firstNum = outputDisplay.textContent;
+  operation = operator;
+  outputHistory.textContent = `${firstNum}${operation}`;
+  outputDisplay.textContent = '';
 }
