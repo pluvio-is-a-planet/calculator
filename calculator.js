@@ -1,7 +1,6 @@
-// let userInput = prompt('Enter expression:', '1 + 1').replace(/[^0-9,.+\-*x/]/g, '');
-// let operator = userInput.match(/[+\-*x/]/)[0];
-// let firstNum = userInput.slice(0, userInput.indexOf(operator));
-// let secondNum = userInput.slice(userInput.indexOf(operator) + 1, );
+let firstNum = '';
+let secondNum = '';
+
 const numberBtns = document.querySelectorAll('.btn.number');
 const operatorBtns = document.querySelectorAll('.btn.operator');
 const decimalBtn = document.querySelector('.btn.decimal-separator');
@@ -9,6 +8,12 @@ const equalsBtn = document.querySelector('.btn.equals');
 const clearBtn = document.querySelector('.btn.clear');
 const outputDisplay = document.querySelector('.display.output');
 const outputHistory = document.querySelector('.display.history');
+
+numberBtns.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    appendNum(e.target.id);
+  });
+});
 
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
@@ -51,3 +56,10 @@ const operate = function(num1, num2, operator) {
     case '/': return divide(num1, num2);
   }
 };
+
+function appendNum(num) {
+  if (outputDisplay.textContent === '0') {
+    outputDisplay.textContent = '';
+  }
+  outputDisplay.textContent += num;
+}
