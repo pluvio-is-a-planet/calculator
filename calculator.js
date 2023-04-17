@@ -8,7 +8,7 @@ let inputValue;
 
 buttons.forEach((btn) => {
   btn.addEventListener(('click'), (e) => {
-    inputValue = getInputValue(e);
+    inputValue = e.target.id;
     displayInput.value += inputValue;
   });
 });
@@ -53,9 +53,4 @@ const operate = function(num1, num2, operator) {
     case 'x': return multiply(num1, num2);
     case '/': return divide(num1, num2);
   }
-};
-
-function getInputValue(e) {
-  let displayString = e.target.id;
-  return displayString;
 };
