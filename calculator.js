@@ -30,7 +30,7 @@ decimalBtn.addEventListener('click', (e) => {
 
 equalsBtn.addEventListener('click', evaluate);
 clearBtn.addEventListener('click', clearAll);
-deleteBtn.addEventListener('click', resetOutput);
+deleteBtn.addEventListener('click', delOne);
 window.addEventListener('keydown', getKeyboardInput);
 
 const add = function(a, b) {
@@ -113,13 +113,6 @@ function clearAll() {
 }
 
 function resetOutput() {
-  if (arguments.length === 1) {
-    if (arguments[0].target === deleteBtn) {
-      let string = outputDisplay.textContent;
-      outputDisplay.textContent = string.slice(0, string.length -1);
-      return;
-    }
-  }
   outputDisplay.textContent = '';
   displayNeedsReset = false; 
 }
@@ -131,4 +124,8 @@ function getKeyboardInput(e) {
   if (e.key === '=' || e.key === 'Enter') evaluate();
   if (e.key === 'Backspace' || e.key === 'Delete') delOne();
   if (e.key === 'Escape') clearAll();
+}
+
+function delOne() {
+  outputDisplay.textContent = outputDisplay.textContent.slice(0, outputDisplay.textContent.length - 1);
 }
