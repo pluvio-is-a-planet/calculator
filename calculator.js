@@ -111,11 +111,13 @@ function clearAll() {
   outputHistory.textContent = '';
 }
 
-function resetOutput(e) {
-  if (e.target === deleteBtn) {
-    let string = outputDisplay.textContent;
-    outputDisplay.textContent = string.slice(0, string.length -1);
-    return;
+function resetOutput() {
+  if (arguments.length === 1) {
+    if (arguments[0].target === deleteBtn) {
+      let string = outputDisplay.textContent;
+      outputDisplay.textContent = string.slice(0, string.length -1);
+      return;
+    }
   }
   outputDisplay.textContent = '';
   displayNeedsReset = false; 
