@@ -31,6 +31,7 @@ decimalBtn.addEventListener('click', (e) => {
 equalsBtn.addEventListener('click', evaluate);
 clearBtn.addEventListener('click', clearAll);
 deleteBtn.addEventListener('click', resetOutput);
+window.addEventListener('keydown', getKeyboardInput);
 
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
@@ -121,4 +122,13 @@ function resetOutput() {
   }
   outputDisplay.textContent = '';
   displayNeedsReset = false; 
+}
+
+function getKeyboardInput(e) {
+  console.log(e.key);
+  if (e.key.match(/[0-9.]/)) appendNum(e.key);
+  if (e.key.match(/[\+\-*/x]/)) setOperator(e.key);
+  if (e.key === '=' || e.key === 'Enter') evaluate();
+  if (e.key === 'Backspace' || e.key === 'Delete') delOne();
+  if (e.key === 'Escape') clearAll();
 }
