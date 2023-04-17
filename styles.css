@@ -45,8 +45,7 @@ body {
   color: #7a8999;
   flex: 1 1 auto;
   overflow: hidden;
-  width: 100%;
-  direction: rtl;
+  max-width: 100%;
 }
 
 .display.output {
@@ -54,8 +53,7 @@ body {
   font-size: 3rem;
   flex: 2 1 auto;
   overflow: hidden;
-  width: 100%;
-  direction: rtl;
+  max-width: 100%;
 }
 
 .interface.container {
