@@ -1,5 +1,5 @@
-let firstNum = '';
-let secondNum = '';
+let firstNum = null;
+let secondNum = null;
 let operation = null;
 
 const numberBtns = document.querySelectorAll('.btn.number');
@@ -27,6 +27,8 @@ decimalBtn.addEventListener('click', (e) => {
 });
 
 equalsBtn.addEventListener('click', evaluate);
+
+clearBtn.addEventListener('click', clearAll);
 
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
@@ -96,4 +98,12 @@ function evaluate() {
   outputDisplay.textContent = operate(firstNum, secondNum, operation);
   outputHistory.textContent = `${firstNum}${operation}${secondNum}=`
   operation = null;
+}
+
+function clearAll() {
+  firstNum = null;
+  secondNum = null;
+  operation = null;
+  outputDisplay.textContent = '';
+  outputHistory.textContent = '';
 }
