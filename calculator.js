@@ -119,13 +119,13 @@ function resetOutput() {
 
 function getKeyboardInput(e) {
   console.log(e.key);
-  if (e.key.match(/[0-9.]/)) appendNum(e.key);
+  if (!isNaN(e.key)) appendNum(e.key);
   if (e.key.match(/[\+\-*/x]/)) setOperator(e.key);
   if (e.key === '=' || e.key === 'Enter') evaluate();
   if (e.key === 'Backspace' || e.key === 'Delete') delOne();
   if (e.key === 'Escape') clearAll();
 }
 
-function delOne() {
+function delOne(e) {
   outputDisplay.textContent = outputDisplay.textContent.slice(0, outputDisplay.textContent.length - 1);
 }
