@@ -1,6 +1,7 @@
 let firstNum = null;
 let secondNum = null;
 let operation = null;
+let displayNeedsReset = false;
 
 const numberBtns = document.querySelectorAll('.btn.number');
 const operatorBtns = document.querySelectorAll('.btn.operator');
@@ -74,12 +75,13 @@ const operate = function(num1, num2, operator) {
 };
 
 function appendNum(num) {
+  if (displayNeedsReset) resetOutput();
   if (num === '.') { // check to enter a decimal point
     if (outputDisplay.textContent === '') {
       outputDisplay.textContent = 0;
     } else if (outputDisplay.textContent.includes('.')) return;
   } else if (outputDisplay.textContent === '0') {
-    outputDisplay.textContent = '';
+    resetOutput();
   }
 
   outputDisplay.textContent += num;
@@ -90,11 +92,11 @@ function setOperator(operator) {
   firstNum = outputDisplay.textContent;
   operation = operator;
   outputHistory.textContent = `${firstNum}${operation}`;
-  outputDisplay.textContent = '';
+  displayNeedsReset = true;
 }
 
 function evaluate() {
-  if (operation === null) return;
+  if (operation === null || displayNeedsReset) return;
   secondNum = outputDisplay.textContent;
   outputDisplay.textContent = operate(firstNum, secondNum, operation);
   outputHistory.textContent = `${firstNum}${operation}${secondNum}=`
@@ -111,4 +113,5 @@ function clearAll() {
 
 function resetOutput() {
   outputDisplay.textContent = '';
+  displayNeedsReset = false;
 }
