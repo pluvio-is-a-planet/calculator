@@ -111,7 +111,12 @@ function clearAll() {
   outputHistory.textContent = '';
 }
 
-function resetOutput() {
+function resetOutput(e) {
+  if (e.target === deleteBtn) {
+    let string = outputDisplay.textContent;
+    outputDisplay.textContent = string.slice(0, string.length -1);
+    return;
+  }
   outputDisplay.textContent = '';
-  displayNeedsReset = false;
+  displayNeedsReset = false; 
 }
