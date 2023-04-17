@@ -26,6 +26,7 @@ body {
   max-width: 600px;
   margin: auto;
   height: 500px;
+  box-shadow: 16px 16px 16px 0 #080c0f;
 }
 
 .display.row {
@@ -120,6 +121,7 @@ button:hover {
   cursor: pointer;
   background-color: #e9f0f7;
   color: #121920;
+  box-shadow: 0 0 8px 1px #fff;
 }
 
 footer {
