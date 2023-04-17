@@ -2,7 +2,11 @@
 // let operator = userInput.match(/[+\-*x/]/)[0];
 // let firstNum = userInput.slice(0, userInput.indexOf(operator));
 // let secondNum = userInput.slice(userInput.indexOf(operator) + 1, );
-const buttons = document.querySelectorAll('.btn.container .btn.number, .btn.container .btn.operator, .btn.container .btn.decimal-separator');
+const numberBtns = document.querySelectorAll('.btn.number');
+const operatorBtns = document.querySelectorAll('.btn.operator');
+const decimalBtn = document.querySelector('.btn.decimal-separator');
+const equalsBtn = document.querySelector('.btn.equals');
+const clearBtn = document.querySelector('.btn.clear');
 const displayInput = document.querySelector('input#display');
 let inputValue;
 
