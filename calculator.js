@@ -7,15 +7,8 @@ const operatorBtns = document.querySelectorAll('.btn.operator');
 const decimalBtn = document.querySelector('.btn.decimal-separator');
 const equalsBtn = document.querySelector('.btn.equals');
 const clearBtn = document.querySelector('.btn.clear');
-const displayInput = document.querySelector('input#display');
-let inputValue;
-
-buttons.forEach((btn) => {
-  btn.addEventListener(('click'), (e) => {
-    inputValue = e.target.id;
-    displayInput.value += inputValue;
-  });
-});
+const outputDisplay = document.querySelector('.display.output');
+const outputHistory = document.querySelector('.display.history');
 
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
