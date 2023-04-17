@@ -9,6 +9,9 @@ body {
   color: #e9f0f7;
   font-family: 'VT323', monospace;
   display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  overflow: auto;
 }
 
 .calculator.container {
@@ -22,7 +25,7 @@ body {
   border-radius: 0.5rem;
   max-width: 600px;
   margin: auto;
-  height: 80vh;
+  height: 500px;
 }
 
 .display.row {
@@ -101,8 +104,33 @@ button {
   font-family: 'VT323', monospace;
 }
 
+button.operator {
+  background-color: #b36500;
+}
+
+button.equals {
+  background-color: #105000;
+}
+
+.btn.control.row button {
+  background-color: #8a1c00;
+}
+
 button:hover {
   cursor: pointer;
   background-color: #e9f0f7;
   color: #121920;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer a i {
+  font-size: 1.5em;
+  color: #fff;
+  margin-left: 10px;
 }
