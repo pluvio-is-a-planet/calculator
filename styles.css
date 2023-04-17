@@ -1,52 +1,103 @@
 html, body {
-  background: rgb(35, 48, 63);
-  color: rgb(233, 238, 245);
-  display: flex;
-  font-family: 'VT323', monospace;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
+  background-color: #23303f;
+  color: #e9f0f7;
+  font-family: 'VT323', monospace;
+  display: flex;
 }
 
 .calculator.container {
   display: flex;
-  flex: 0 1 70vh;
+  flex: 0 1 60vh;
   flex-direction: column;
-  gap: 0.3rem;
-  background: rgb(18, 25, 32);
-  padding: 1rem;
-}
-
-.row  {
-  display: flex;
   justify-content: space-between;
-  gap: 0.3rem;
+  align-items: center;
+  background-color: #121920;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-width: 600px;
+  margin: auto;
+  height: 80vh;
 }
 
-.display.row .btn {
+.display.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-color: #dee3e9;
+  border-radius: 0.5rem;
+  height: 25%;
+  padding: 0.5rem;
+  font-size: 2.5rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+
+.display.history {
+  color: #7a8999;
   flex: 1 1 auto;
 }
 
-.row .btn.container {
+.display.output {
+  color: #23303f;
+  font-size: 3rem;
+  flex: 2 1 auto;
+}
+
+.interface.container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.1rem;
+  width: 100%;
+  height: 75%;
+  padding: 0.5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.interface.container .row{
+  gap: 0.5rem;
+}
+
+.btn.container {
   display: flex;
   flex: 1;
 }
 
-.row button.btn {
-  flex: 1;
-  background: rgb(18, 25, 32);
-  color: rgb(233, 238, 245);
-  font-weight: 700;
+button {
+  flex: 1 1 0;
+  display: flex;
+  height: 80%;
+  justify-content: center;
+  align-items: center;
+  background-color: #121920;
+  color: #e9f0f7;
   font-size: 2rem;
+  font-weight: bold;
+  border: 2px solid #e9f0f7;
+  border-radius: 0.5rem;
+  padding: 1rem;
   font-family: 'VT323', monospace;
-  border: 1px solid rgb(233, 238, 245);
-  padding: 5px 0;
 }
 
 button:hover {
   cursor: pointer;
+  background-color: #e9f0f7;
+  color: #121920;
 }
