@@ -1,3 +1,8 @@
+let userInput = prompt('Enter expression:', '1 + 1').replace(/[^0-9,.+\-*x/]/g, '');
+let operator = userInput.match(/[+\-*x/]/)[0];
+let firstNum = userInput.slice(0, userInput.indexOf(operator));
+let secondNum = userInput.slice(userInput.indexOf(operator) + 1, );
+
 const add = function(a, b) {
   if (isNaN(a) || isNaN(b)) { 
     throw new Error('Can\'t add these two values together, check your input.');
