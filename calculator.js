@@ -20,4 +20,12 @@ const multiply = function(a, b) {
   }
 
   return Number(a) * Number(b);
-}
+};
+
+const divide = function(a, b) {
+  if (isNaN(a) || isNaN(b)) { 
+    throw new Error('Can\'t divide these two values, check your input.');
+  }
+
+  return Number(a) / Number(b);
+};
