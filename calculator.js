@@ -98,16 +98,6 @@ calculator.evaluate = function(firstValue, secondValue, operator) {
     }
 };
 
-calculator.evaluateNext = function(secondValue, operator) {
-    if (this.resultHistory.length < 1) {
-        throw new Error("No previous result, history is empty.");
-    }
-
-    const previousResult = this.resultHistory.at(-1);
-
-    return this.evaluate(previousResult, secondValue, operator);
-};
-
 calculator.validateInput = function(firstOperand, secondOperand) {
     if (isNaN(firstOperand) || isNaN(secondOperand)) { 
         throw new Error("Not a valid number.");
