@@ -51,12 +51,14 @@ evaluateButton.addEventListener("click", e => {
 
 resetButton.addEventListener("click", e => {
     resetCalculator();
-    render();
+    render(historyOutputDisplay);
+    render(resultOutputDisplay);
 });
 
 deleteButton.addEventListener("click", e => {
     deleteLastInput();
-    render();
+    render(historyOutputDisplay);
+    render(resultOutputDisplay)
 });
 
 function deleteLastInput() {
