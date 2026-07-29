@@ -38,7 +38,11 @@ deleteButton.addEventListener("click", e => {
 });
 
 function handleKeyboardInput(e) {
-    // use handler functions
+    if (!isNaN(e.key) || e.key === ".") handleNumberInput(e.key);
+    if (e.key.match(/[\+\-\*\/]/)) handleOperatorInput(e.key);
+    if (["=", "Enter"].includes(e.key)) handleEvaluateInput();
+    if (["Backspace", "Delete"].includes(e.key)) handleDeleteInput();
+    if (e.key === "Escape") handleResetInput();
 }
 
 function handleNumberInput(num) {
@@ -85,7 +89,6 @@ function handleResetInput() {
 function handleDeleteInput() {
     if (calculator.awaitingOperator) return;
     deleteLastInput();
-    render(historyOutputDisplay);
     render(resultOutputDisplay)
 }
 
