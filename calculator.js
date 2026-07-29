@@ -53,12 +53,12 @@ function handleNumberInput(num) {
     if (calculator.operator) {
         calculator.secondOperand += num;
     } else if (calculator.awaitingOperator) {
-        calculator.awaitingOperator = false;
         calculator.firstOperand = num;
     } else {
         calculator.firstOperand += num;
     }
 
+    calculator.awaitingOperator = false;
     render(resultOutputDisplay);
 }
 
