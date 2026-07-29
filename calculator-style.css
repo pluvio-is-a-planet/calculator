@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: rgb(52, 52, 52);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.calculator-container,
+.output-container,
+.input-container,
+.number-input-container,
+.row-container,
+.operator-input-container {
+    display: flex;
+}
+
+.calculator-container,
+.output-container,
+.number-input-container,
+.operator-input-container {
+    flex-direction: column;
+}
+
+.calculator-container {
+    background-color: rgb(255, 107, 228);
+
+    border-radius: 0.5em;
+    box-shadow: 4px 4px 8px rgb(23, 23, 23);
+
+    padding: 1em;
+
+    justify-content: space-around;
+    gap: 2em;
+}
+
+.output-container {
+    background-color: rgb(39, 39, 39);
+    color: white;
+
+    border-radius: 0.5em;
+
+    padding: 0.5em;
+
+    gap: 0.5em;
+}
+
+.history-output-container,
+.result-output-container {
+    padding: 0.5em;
+
+    height: 1em;
+
+    text-align: end;
+}
+
+.history-output-container {
+    font-size: 14px;
+
+    color: rgb(217, 217, 217);
+}
+
+.result-output-container {
+    font-size: 18px;
+}
+
+.input-container {
+    gap: 2px;
+}
+
+.number-input-container,
+.operator-input-container {
+    gap: 4px;
+}
+
+.number-input-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.row-container {
+    width: 100%;
+    
+    gap: 2px;
+}
+
+.row-container .input {
+    flex: 1;
+}
+
+.input {
+    border: 2px solid grey;
+    border-radius: 0.5em;
+
+    padding: 0.5em 1em;
+
+    color: rgb(39, 39, 39);
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.input:hover {
+    transform: scale(1.05);
+}
+
+.operator-input-container {
+    flex: 1 1 auto;
+}
