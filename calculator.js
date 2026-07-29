@@ -1,5 +1,9 @@
 const calculator = new Object();
 
+const inputButtons = document.querySelectorAll(".row-container .input");
+const operatorButtons = document.querySelectorAll(".operator-input");
+const evaluateButton = document.querySelector(".evaluate-input");
+
 calculator.resultHistory = [];
 
 calculator.add = function(firstOperand, secondOperand) {
