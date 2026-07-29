@@ -16,9 +16,12 @@ numberButtons.forEach(button => {
         const num = e.target.value;
         if (calculator.operator) {
             calculator.secondOperand += num;
+        } else if (calculator.awaitingOperator) {
+            calculator.awaitingOperator = false;
+            calculator.firstOperand = num;
         } else {
             calculator.firstOperand += num;
-        } 
+        }
 
         render(resultOutputDisplay);
     });
@@ -48,10 +51,12 @@ evaluateButton.addEventListener("click", e => {
 
 resetButton.addEventListener("click", e => {
     resetCalculator();
+    render();
 });
 
 deleteButton.addEventListener("click", e => {
     deleteLastInput();
+    render();
 });
 
 function deleteLastInput() {
@@ -69,6 +74,7 @@ function deleteLastInput() {
 function resetCalculator() {
     calculator.firstOperand = "";
     calculator.operator = null;
+    calculator.awaitingOperator = false;
     calculator.secondOperand = "";
 }
 
@@ -77,6 +83,7 @@ function runEvaluate(firstOperand, secondOperand, operator) {
 
     calculator.firstOperand = `${result}`;
     calculator.operator = null;
+    calculator.awaitingOperator = true;
     calculator.secondOperand = "";
 
     return result;
