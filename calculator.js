@@ -15,6 +15,7 @@ const deleteButton = document.querySelector(".delete-button");
 numberButtons.forEach(button => {
     button.addEventListener("click", e => {
         const num = e.target.value;
+        appendInputOutput(num);
         if (calculator.operator) {
             calculator.secondOperand += num;
         } else {
@@ -26,6 +27,7 @@ numberButtons.forEach(button => {
 operatorButtons.forEach(button => {
     button.addEventListener("click", e => {
         const operatorString = e.target.value;
+        appendInputOutput(operatorString);
         if (calculator.operator) {
             if (calculator.firstOperand && calculator.secondOperand) {
                 runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
@@ -45,6 +47,28 @@ resetButton.addEventListener("click", e => {
     resetDisplay();
 });
 
+deleteButton.addEventListener("click", e => {
+    deleteLastInput();
+});
+
+function deleteLastInput() {
+    // equivalent to pressing 'backspace', should only delete the last character, because of the way
+    // I'm handling how the values are actually stored, it's a bit more tricky and has to go through a few checks.
+    if (calculator.operator && calculator.secondOperand.length > 0) {
+        calculator.secondOperand = calculator.secondOperand.slice(0, -1);
+    } else if (calculator.operator && calculator.secondOperand.length === 0) {
+        calculator.operator = null;
+    } else if (calculator.operator === null && calculator.firstOperand.length > 0) {
+        calculator.firstOperand = calculator.firstOperand.slice(0, -1);
+    }
+
+    resultOutputDisplay.textContent = resultOutputDisplay.textContent.slice(0, -1);
+}
+
+function appendInputOutput(input) {
+    resultOutputDisplay.textContent += input;
+}
+
 function resetCalculator() {
     calculator.firstOperand = "";
     calculator.operator = null;
@@ -59,7 +83,7 @@ function resetDisplay() {
 function runEvaluate(firstOperand, secondOperand, operator) {
     const result = calculator.evaluate(firstOperand, secondOperand, operator);
 
-    calculator.firstOperand = result;
+    calculator.firstOperand = `${result}`;
     calculator.operator = null;
     calculator.secondOperand = "";
 
