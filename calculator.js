@@ -21,28 +21,26 @@ calculator.divide = function(firstValue, secondValue) {
 calculator.evaluate = function(firstValue, secondValue, operator) {
     try {
         const validated = this.validateInput(firstValue, secondValue);
-        let result;
+        const firstOperand = (this.resultHistory.length > 0)
+            ? this.resultHistory.at(-1)
+            : validated[0];
+        const secondOperand = validated[1];
 
-        switch (operator) {
-            case "+":
-                result = this.add(validated[0], validated[1]);
-                this.resultHistory.push(result);
-                return result;
-            case "-":
-                result = this.subtract(validated[0], validated[1]);
-                this.resultHistory.push(result);
-                return result;
-            case "*":
-                result = this.multiply(validated[0], validated[1]);
-                this.resultHistory.push(result);
-                return result;
-            case "/":
-                result = this.divide(validated[0], validated[1]);
-                this.resultHistory.push(result);
-                return result;
-            default:
-                throw new Error("Invalid operator.");
-        }
+        const operations = {
+            "+": this.add,
+            "-": this.subtract,
+            "*": this.multiply,
+            "/": this.divide
+        };
+
+        const operationFunction = operations[operator];
+        if (!operationFunction) {
+            throw new Error("Invalid operation.");
+        };
+
+        const result = operationFunction(firstOperand, secondOperand);
+        this.resultHistory.push(result);
+        return result;
     } catch (error) {
         return error;
     }
