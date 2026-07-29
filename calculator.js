@@ -1,10 +1,55 @@
 const calculator = new Object();
 
-const inputButtons = document.querySelectorAll(".row-container .input");
-const operatorButtons = document.querySelectorAll(".operator-input");
-const evaluateButton = document.querySelector(".evaluate-input");
+calculator.firstOperand = "";
+calculator.operator = null;
+calculator.secondOperand = "";
 
-calculator.resultHistory = [];
+const numberButtons = document.querySelectorAll(".number-input");
+const operatorButtons = document.querySelectorAll(".operator-input");
+const evaluateButton = document.querySelector(".evaluate");
+
+const resultOutputDisplay = document.querySelector(".result-output-container");
+const historyOutputDisplay = document.querySelector(".history-output-container");
+
+numberButtons.forEach(button => {
+    button.addEventListener("click", e => {
+        const num = e.target.value;
+        if (calculator.operator) {
+            calculator.secondOperand += num;
+        } else {
+            calculator.firstOperand += num;
+        } 
+    });
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener("click", e => {
+        const operatorString = e.target.value;
+        if (calculator.operator) {
+            if (calculator.firstOperand && calculator.secondOperand) {
+                runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
+            }
+        }
+
+        setOperator(operatorString);
+    });
+});
+
+evaluateButton.addEventListener("click", e => {
+    runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
+});
+
+function runEvaluate(firstOperand, secondOperand, operator) {
+    const result = calculator.evaluate(firstOperand, secondOperand, operator);
+
+    calculator.firstOperand = result;
+    calculator.operator = null;
+    calculator.secondOperand = "";
+}
+
+function setOperator(operatorInput) {
+    calculator.operator = operatorInput;
+}
 
 calculator.add = function(firstOperand, secondOperand) {
     return firstOperand + secondOperand;
@@ -44,7 +89,6 @@ calculator.evaluate = function(firstValue, secondValue, operator) {
             };
 
             const result = operationFunction(firstOperand, secondOperand);
-            this.resultHistory.push(result);
             return result;
         } else {
             throw new Error("Oops! Something went wrong.");
