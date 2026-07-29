@@ -2,20 +2,20 @@ const calculator = new Object();
 
 calculator.resultHistory = [];
 
-calculator.add = function(firstValue, secondValue) {
-    return firstValue + secondValue;
+calculator.add = function(firstOperand, secondOperand) {
+    return firstOperand + secondOperand;
 };
 
-calculator.subtract = function(firstValue, secondValue) {
-    return firstValue - secondValue;
+calculator.subtract = function(firstOperand, secondOperand) {
+    return firstOperand - secondOperand;
 };
 
-calculator.multiply = function(firstValue, secondValue) {
-    return firstValue * secondValue;
+calculator.multiply = function(firstOperand, secondOperand) {
+    return firstOperand * secondOperand;
 };
 
-calculator.divide = function(firstValue, secondValue) {
-    return firstValue / secondValue;
+calculator.divide = function(firstOperand, secondOperand) {
+    return firstOperand / secondOperand;
 };
 
 calculator.evaluate = function(firstValue, secondValue, operator) {
@@ -46,10 +46,10 @@ calculator.evaluate = function(firstValue, secondValue, operator) {
     }
 }
 
-calculator.validateInput = function(firstValue, secondValue) {
-    if (isNaN(firstValue) || isNaN(secondValue)) { 
+calculator.validateInput = function(firstOperand, secondOperand) {
+    if (isNaN(firstOperand) || isNaN(secondOperand)) { 
         throw new Error("Not a valid number.");
     }
 
-    return [Number(firstValue), Number(secondValue)];
+    return [Number(firstOperand), Number(secondOperand)];
 }
