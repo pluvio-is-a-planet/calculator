@@ -21,24 +21,30 @@ calculator.divide = function(firstOperand, secondOperand) {
 calculator.evaluate = function(firstValue, secondValue, operator) {
     try {
         const validated = this.validateInput(firstValue, secondValue);
-        const firstOperand = validated[0];
-        const secondOperand = validated[1];
+        // Need to make sure that validated is actually valid, by checking that this.validateInput
+        // indeed returned an array containing 2 items
+        if (Array.isArray(validated) && validated.length === 2) {
+            const firstOperand = validated[0];
+            const secondOperand = validated[1];
 
-        const operations = {
-            "+": this.add,
-            "-": this.subtract,
-            "*": this.multiply,
-            "/": this.divide
-        };
+            const operations = {
+                "+": this.add,
+                "-": this.subtract,
+                "*": this.multiply,
+                "/": this.divide
+            };
 
-        const operationFunction = operations[operator];
-        if (!operationFunction) {
-            throw new Error("Invalid operation.");
-        };
+            const operationFunction = operations[operator];
+            if (!operationFunction) {
+                throw new Error("Invalid operation.");
+            };
 
-        const result = operationFunction(firstOperand, secondOperand);
-        this.resultHistory.push(result);
-        return result;
+            const result = operationFunction(firstOperand, secondOperand);
+            this.resultHistory.push(result);
+            return result;
+        } else {
+            throw new Error("Oops! Something went wrong.");
+        }
     } catch (error) {
         return error;
     }
