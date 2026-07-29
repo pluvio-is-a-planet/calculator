@@ -21,9 +21,7 @@ calculator.divide = function(firstOperand, secondOperand) {
 calculator.evaluate = function(firstValue, secondValue, operator) {
     try {
         const validated = this.validateInput(firstValue, secondValue);
-        const firstOperand = (this.resultHistory.length > 0)
-            ? this.resultHistory.at(-1)
-            : validated[0];
+        const firstOperand = validated[0];
         const secondOperand = validated[1];
 
         const operations = {
@@ -44,7 +42,17 @@ calculator.evaluate = function(firstValue, secondValue, operator) {
     } catch (error) {
         return error;
     }
-}
+};
+
+calculator.evaluateNext = function(secondValue, operator) {
+    if (this.resultHistory.length < 1) {
+        throw new Error("No previous result, history is empty.");
+    }
+
+    const previousResult = this.resultHistory.at(-1);
+
+    return this.evaluate(previousResult, secondValue, operator);
+};
 
 calculator.validateInput = function(firstOperand, secondOperand) {
     if (isNaN(firstOperand) || isNaN(secondOperand)) { 
@@ -52,4 +60,4 @@ calculator.validateInput = function(firstOperand, secondOperand) {
     }
 
     return [Number(firstOperand), Number(secondOperand)];
-}
+};
