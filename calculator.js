@@ -11,60 +11,83 @@ const deleteButton = document.querySelector(".delete-button");
 const calculator = new Object();
 resetCalculator();
 
+window.addEventListener("keydown", handleKeyboardInput);
+
 numberButtons.forEach(button => {
     button.addEventListener("click", e => {
-        const num = e.target.value;
-        const active = calculator.operator ? calculator.secondOperand : calculator.firstOperand;
-
-        if (num === "." && (active.includes(num) && !calculator.awaitingOperator)) return;
-
-        if (calculator.operator) {
-            calculator.secondOperand += num;
-        } else if (calculator.awaitingOperator) {
-            calculator.awaitingOperator = false;
-            calculator.firstOperand = num;
-        } else {
-            calculator.firstOperand += num;
-        }
-
-        render(resultOutputDisplay);
+        handleNumberInput(e.target.value);
     });
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener("click", e => {
-        const operator = e.target.value;
-
-        if (calculator.operator) {
-            if (calculator.firstOperand && calculator.secondOperand) {
-                render(historyOutputDisplay);
-                runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
-            }
-        }
-
-        setOperator(operator);
-        render(resultOutputDisplay);
+        handleOperatorInput(e.target.value);
     });
 });
 
 evaluateButton.addEventListener("click", e => {
-    render(historyOutputDisplay);
-    runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
-    render(resultOutputDisplay);
+    handleEvaluateInput();
 });
 
 resetButton.addEventListener("click", e => {
-    resetCalculator();
-    render(historyOutputDisplay);
-    render(resultOutputDisplay);
+    handleResetInput();
 });
 
 deleteButton.addEventListener("click", e => {
+    handleDeleteInput();
+});
+
+function handleKeyboardInput(e) {
+    // use handler functions
+}
+
+function handleNumberInput(num) {
+    const active = calculator.operator ? calculator.secondOperand : calculator.firstOperand;
+
+    if (num === "." && (active.includes(num) && !calculator.awaitingOperator)) return;
+
+    if (calculator.operator) {
+        calculator.secondOperand += num;
+    } else if (calculator.awaitingOperator) {
+        calculator.awaitingOperator = false;
+        calculator.firstOperand = num;
+    } else {
+        calculator.firstOperand += num;
+    }
+
+    render(resultOutputDisplay);
+}
+
+function handleOperatorInput(operator) {
+    if (calculator.operator) {
+        if (calculator.firstOperand && calculator.secondOperand) {
+            render(historyOutputDisplay);
+            runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
+        }
+    }
+
+    setOperator(operator);
+    render(resultOutputDisplay);
+}
+
+function handleEvaluateInput() {
+    render(historyOutputDisplay);
+    runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
+    render(resultOutputDisplay);
+}
+
+function handleResetInput() {
+    resetCalculator();
+    render(historyOutputDisplay);
+    render(resultOutputDisplay);
+}
+
+function handleDeleteInput() {
     if (calculator.awaitingOperator) return;
     deleteLastInput();
     render(historyOutputDisplay);
     render(resultOutputDisplay)
-});
+}
 
 function deleteLastInput() {
     // equivalent to pressing 'backspace', should only delete the last character, because of the way
