@@ -19,14 +19,16 @@ body {
 .input-container,
 .number-input-container,
 .row-container,
-.operator-input-container {
+.operator-input-container,
+.control-input-container {
     display: flex;
 }
 
 .calculator-container,
 .output-container,
 .number-input-container,
-.operator-input-container {
+.operator-input-container,
+.control-input-container {
     flex-direction: column;
 }
 
@@ -80,7 +82,8 @@ body {
 }
 
 .number-input-container,
-.operator-input-container {
+.operator-input-container,
+.control-input-container {
     gap: 4px;
 }
 
@@ -100,7 +103,8 @@ body {
     flex: 1;
 }
 
-.input {
+.input,
+.control-button {
     border: 2px solid grey;
     border-radius: 0.5em;
 
@@ -113,8 +117,17 @@ body {
     cursor: pointer;
 }
 
-.input:hover {
+.input:hover,
+.control-button:hover {
     transform: scale(1.05);
+}
+
+.reset-button {
+    background-color: rgb(255, 209, 136);
+}
+
+.delete-button {
+    background-color: rgb(221, 255, 136);
 }
 
 .operator-input-container {
