@@ -16,7 +16,7 @@ numberButtons.forEach(button => {
         const num = e.target.value;
         const active = calculator.operator ? calculator.secondOperand : calculator.firstOperand;
 
-        if (num === "." && (active.includes(num) || active.length < 1)) return;
+        if (num === "." && (active.includes(num) && !calculator.awaitingOperator)) return;
 
         if (calculator.operator) {
             calculator.secondOperand += num;
@@ -60,6 +60,7 @@ resetButton.addEventListener("click", e => {
 });
 
 deleteButton.addEventListener("click", e => {
+    if (calculator.awaitingOperator) return;
     deleteLastInput();
     render(historyOutputDisplay);
     render(resultOutputDisplay)
@@ -150,7 +151,7 @@ calculator.evaluate = function(firstValue, secondValue, operator) {
 
             const operationFunction = operations[operator];
             if (!operationFunction) {
-                throw new Error("Invalid operation.");
+                return firstOperand;
             };
 
             const result = operationFunction(firstOperand, secondOperand);
