@@ -14,6 +14,10 @@ resetCalculator();
 numberButtons.forEach(button => {
     button.addEventListener("click", e => {
         const num = e.target.value;
+        const active = calculator.operator ? calculator.secondOperand : calculator.firstOperand;
+
+        if (num === "." && (active.includes(num) || active.length < 1)) return;
+
         if (calculator.operator) {
             calculator.secondOperand += num;
         } else if (calculator.awaitingOperator) {
@@ -106,7 +110,6 @@ function render(targetDisplay) {
         "/": "÷"
     };
 
-    const active = calculator.operator ? calculator.secondOperand : calculator.firstOperand;
     targetDisplay.textContent = 
         calculator.operator === null
             ? calculator.firstOperand
