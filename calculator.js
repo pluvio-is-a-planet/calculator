@@ -53,5 +53,5 @@ calculator.validateInput = function(firstValue, secondValue) {
         throw new Error("Not a valid number.");
     }
 
-    return [firstValue, secondValue];
+    return [Number(firstValue), Number(secondValue)];
 }
