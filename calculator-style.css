@@ -27,8 +27,7 @@ body {
 .calculator-container,
 .output-container,
 .number-input-container,
-.operator-input-container,
-.control-input-container {
+.operator-input-container {
     flex-direction: column;
 }
 
@@ -38,9 +37,12 @@ body {
     border-radius: 0.5em;
     box-shadow: 4px 4px 8px rgb(23, 23, 23);
 
+    width: 35vh;
     padding: 1em;
 
-    justify-content: space-around;
+    justify-content: center;
+    align-items: stretch;
+
     gap: 2em;
 }
 
@@ -78,6 +80,7 @@ body {
 }
 
 .input-container {
+    flex-wrap: wrap;
     gap: 2px;
 }
 
@@ -91,6 +94,21 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
+}
+
+.control-input-container {
+    flex: 1;
+
+    display: flex;
+    justify-content: stretch;
+}
+
+.number-input-container {
+    flex: 3;
+}
+
+.operator-input-container {
+    flex: 1;
 }
 
 .row-container {
@@ -117,6 +135,10 @@ body {
     cursor: pointer;
 }
 
+.control-button {
+    flex: 1;
+}
+
 .input:hover,
 .control-button:hover {
     transform: scale(1.05);
@@ -128,8 +150,4 @@ body {
 
 .delete-button {
     background-color: rgb(221, 255, 136);
-}
-
-.operator-input-container {
-    flex: 1 1 auto;
 }
