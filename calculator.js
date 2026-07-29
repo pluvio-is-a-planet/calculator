@@ -1,5 +1,7 @@
 const calculator = new Object();
 
+calculator.resultHistory = [];
+
 calculator.add = function(firstValue, secondValue) {
     return firstValue + secondValue;
 };
@@ -19,12 +21,25 @@ calculator.divide = function(firstValue, secondValue) {
 calculator.evaluate = function(firstValue, secondValue, operator) {
     try {
         const validated = this.validateInput(firstValue, secondValue);
+        let result;
 
         switch (operator) {
-            case "+": return this.add(validated[0], validated[1]);
-            case "-": return this.subtract(validated[0], validated[1]);
-            case "*": return this.multiply(validated[0], validated[1]);
-            case "/": return this.divide(validated[0], validated[1]);
+            case "+":
+                result = this.add(validated[0], validated[1]);
+                this.resultHistory.push(result);
+                return result;
+            case "-":
+                result = this.subtract(validated[0], validated[1]);
+                this.resultHistory.push(result);
+                return result;
+            case "*":
+                result = this.multiply(validated[0], validated[1]);
+                this.resultHistory.push(result);
+                return result;
+            case "/":
+                result = this.divide(validated[0], validated[1]);
+                this.resultHistory.push(result);
+                return result;
             default:
                 throw new Error("Invalid operator.");
         }
