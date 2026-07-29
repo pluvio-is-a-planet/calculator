@@ -2,6 +2,13 @@ const calculator = new Object();
 
 resetCalculator();
 
+const operatorSymbols = {
+    "+": "+",
+    "-": "-",
+    "*": "x",
+    "/": "÷"
+};
+
 const numberButtons = document.querySelectorAll(".number-input");
 const operatorButtons = document.querySelectorAll(".operator-input");
 const evaluateButton = document.querySelector(".evaluate");
@@ -26,15 +33,19 @@ numberButtons.forEach(button => {
 
 operatorButtons.forEach(button => {
     button.addEventListener("click", e => {
-        const operatorString = e.target.value;
-        appendInputOutput(operatorString);
+        const operator = e.target.value;
+        if (calculator.operator) {
+            deleteLastInput();
+        }
+        appendInputOutput(operatorSymbols[operator]);
         if (calculator.operator) {
             if (calculator.firstOperand && calculator.secondOperand) {
                 runEvaluate(calculator.firstOperand, calculator.secondOperand, calculator.operator);
+                appendInputOutput(operatorSymbols[operator]);
             }
         }
 
-        setOperator(operatorString);
+        setOperator(operator);
     });
 });
 
@@ -82,12 +93,18 @@ function resetDisplay() {
 
 function runEvaluate(firstOperand, secondOperand, operator) {
     const result = calculator.evaluate(firstOperand, secondOperand, operator);
+    displayResult(firstOperand, secondOperand, operatorSymbols[operator], result);
 
     calculator.firstOperand = `${result}`;
     calculator.operator = null;
     calculator.secondOperand = "";
 
     return result;
+}
+
+function displayResult(firstOperand, secondOperand, operator, result) {
+    historyOutputDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} = ${result}`;
+    resultOutputDisplay.textContent = result;
 }
 
 function setOperator(operatorInput) {
